@@ -12,7 +12,7 @@ Author URL: http://www.qiyuuu.com
 !defined('EMLOG_ROOT') && exit('access deined!');
 
 if (!class_exists('TplOptions', false)) {
-	include dirname(__FILE__) . '/tpl_options.php';
+	include dirname(__FILE__) . '/tpl_options-master.php';
 }
 
 //插件激活回调函数
