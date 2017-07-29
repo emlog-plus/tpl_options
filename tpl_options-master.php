@@ -17,7 +17,7 @@ Author URL: http://www.qiyuuu.com
 class TplOptions {
 
 	//插件标识
-	const ID = 'tpl_options';
+	const ID = 'tpl_options-master';
 	const NAME = '模板设置';
 	const VERSION = '2+2.1';
 
