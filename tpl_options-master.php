@@ -164,13 +164,7 @@ class TplOptions {
 		}
 	}
 
-	/**
-	 * 侧栏小图标
-	 * @return void
-	 */
-	public function hookAdminMainTopIcon() {
-		echo sprintf('<script>$("a[href=\\"template.php\\"]").css("background", "url(%s/setting.png) no-repeat 20px 1px");</script>', $this->_assets);
-	}
+
 
 	/**
 	 * 输出数据
@@ -367,7 +361,7 @@ class TplOptions {
 			return $this->_db;
 		}
 		if (class_exists('Database', false)) {
-			$this->_db = Database::getInstance();
+			$this->_db = Mysqlii::getInstance();
 		} else {
 			$this->_db = MySql::getInstance();
 		}
@@ -425,7 +419,7 @@ class TplOptions {
 		$subSql = array();
 		foreach ($condition as $key => $value) {
 			if (is_string($value)) {
-				$value = mysql_escape_string($value);
+				$value = $this->getDb()->escape_string($value);
 				$subSql[] = "(`$key`='$value')";
 			} elseif (is_array($value)) {
 				$subSql[] = "(`$key` IN (" . $this->implodeSqlArray($value) . '))';
@@ -464,7 +458,7 @@ class TplOptions {
 	 * @return string 形如('value1', 'value2')的字符串
 	 */
 	private function implodeSqlArray($data) {
-		return implode(',', array_map(create_function('$val', 'return "\'" . mysql_escape_string($val) . "\'";'), $data));
+		return implode(',', array_map(create_function('$val', 'return "\'" . addcslashes($val,"%_") . "\'";'), $data));
 	}
 
 	/**
