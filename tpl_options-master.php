@@ -458,7 +458,7 @@ class TplOptions {
 	 * @return string 形如('value1', 'value2')的字符串
 	 */
 	private function implodeSqlArray($data) {
-		return implode(',', array_map(create_function('$val', 'return "\'" . addcslashes($val,"%_") . "\'";'), $data));
+		return implode(',', array_map(create_function('$val', 'return "\'" . addcslashes($val,"") . "\'";'), $data));
 	}
 
 	/**
