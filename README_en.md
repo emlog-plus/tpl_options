@@ -1,0 +1,1 @@
+Emlog template settings plugin
